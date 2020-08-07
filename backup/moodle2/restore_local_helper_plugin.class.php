@@ -14,8 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
+
 /**
- * Version information.
+ * Restore stuff.
  *
  * @package   local_helper
  * @author    Dmitrii Metelkin <dmitriim@catalyst-au.net>
@@ -23,11 +24,35 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2020080700;      // The current plugin version (Date: YYYYMMDDXX).
-$plugin->release   = 2020080700;      // Same as version.
-$plugin->requires  = 2013111811;
-$plugin->component = "local_helper";
-$plugin->maturity  = MATURITY_STABLE;
+/**
+ * Class restore_local_helper_plugin.
+ */
+class restore_local_helper_plugin extends restore_local_plugin {
 
+    /**
+     * Creates a path element in order to be able to execute code after restore
+     *
+     * @return restore_path_element[]
+     */
+    public function define_grade_item_plugin_structure() {
+        $paths = [];
+
+        $elename = 'local_helper';
+        $elepath = $this->get_pathfor('/local_helpers/local_helper');
+        $paths[] = new restore_path_element($elename, $elepath);
+
+        return $paths;
+    }
+
+    /**
+     * Process the custom field element.
+     *
+     * @param array $data Custom field data from backup.
+     */
+    public function process_local_helper($data) {
+        $this->step->log("Yay, restoring data for grade item: {$data['id']} - {$data['helper']}", backup::LOG_INFO);
+    }
+}
