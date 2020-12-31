@@ -1,0 +1,38 @@
+<div>
+    <section role="complementary" data-block="create" class="block-create disabled">
+        <h5 id="block-create-header" class="card-title d-inline">Create</h5>
+        <div class="block-controls float-right header">
+            <div class="action-menu moodle-actionmenu block-control-actions commands d-inline" data-enhance="moodle-core-actionmenu">
+                <div class="menubar d-flex " id="action-menu-create-menubar" role="menubar">
+                    <a role="button" id="collapse-create-btn" data-toggle="collapse" data-target="#collapse-create-panel" aria-expanded="true" aria-controls="collapse-create-panel" class=""><i class="icon fa collapse-panel fa-fw fa-minus" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="collapse show" id="collapse-create-panel">
+            <div>
+                <ul>
+                    <li>
+                        <a href="#" data-action="createnewmodal" data-courseid="{{courseid}}" data-id="0">Moodle Wiki example</a>
+                    </li>
+                    <li>
+                        <a href="#" data-action="createitemmodal" data-courseid="{{courseid}}" data-id="1">On click example 1</a>
+                    </li>
+                    <li>
+                        <a href="#" data-action="createfinalmodal" data-courseid="{{courseid}}" data-id="2">On click example 2</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+{{#js}}
+require(['jquery', 'core/str', 'local_helper/gradeitemform', 'local_helper/newitemform'],
+    function($, Str, gradeItemForm, newItemForm) {
+        gradeItemForm.init('[data-action=createitemmodal]', {{contextid}});
+        gradeItemForm.init('[data-action=createfinalmodal]', {{contextid}});
+        newItemForm.init('[data-action=createnewmodal]', {{contextid}});
+});
+{{/js}}
+
