@@ -46,3 +46,18 @@ function local_helper_output_fragment_item_form($args) {
     ob_end_clean();
     return $o;
 }
+
+/**
+ * Plugin hook for loading custom elements into module forms after the data is set.
+ *
+ * @param \moodleform_mod $modform moodle course module form to set customfields data in.
+ * @param \MoodleQuickForm $form the module settings form itself.
+ */
+function local_helper_coursemodule_definition_after_data(moodleform_mod $modform, \MoodleQuickForm $form) {
+    $name = $form->getElementValue('name');
+
+    if ($name == 'Page 1') {
+        $element = $form->createElement('static', 'works', '', 'The  callback coursemodule_definition_after_data works!');
+        $form->insertElementBefore($element, 'name');
+    }
+}
