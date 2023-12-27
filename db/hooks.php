@@ -28,19 +28,19 @@ defined('MOODLE_INTERNAL') || die();
 
 $callbacks = [
     [
-        'hook' => core\hook\course\form_extend_definition::class,
+        'hook' => \core_course\hook\extend_form_definition::class,
         'callback' => local_helper\hook_callbacks::class . '::course_form_extend_definition',
     ],
     [
-        'hook' => core\hook\course\form_extend_definition_after_data::class,
+        'hook' => \core_course\hook\extend_form_definition_after_data::class,
         'callback' => local_helper\hook_callbacks::class . '::course_form_extend_definition_after_data',
     ],
     [
-        'hook' => core\hook\course\form_extend_validation::class,
+        'hook' => \core_course\hook\extend_form_validation::class,
         'callback' => local_helper\hook_callbacks::class . '::course_form_extend_validation',
     ],
     [
-        'hook' => core\hook\course\form_extend_submission::class,
+        'hook' => \core_course\hook\extend_form_submission::class,
         'callback' => local_helper\hook_callbacks::class . '::course_form_extend_submission',
     ],
 ];
