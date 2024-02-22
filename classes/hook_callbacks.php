@@ -16,10 +16,10 @@
 
 namespace local_helper;
 
-use core_course\hook\extend_form_definition;
-use core_course\hook\extend_form_definition_after_data;
-use core_course\hook\extend_form_submission;
-use core_course\hook\extend_form_validation;
+use core_course\hook\after_form_definition;
+use core_course\hook\after_form_definition_after_data;
+use core_course\hook\after_form_submission;
+use core_course\hook\after_form_validation;
 
 /**
  * Hook callbacks.
@@ -34,9 +34,9 @@ class hook_callbacks {
     /**
      * Extending a course form.
      *
-     * @param \core_course\hook\extend_form_definition $hook Hook.
+     * @param \core_course\hook\after_form_definition $hook Hook.
      */
-    public static function course_form_extend_definition(extend_form_definition $hook): void {
+    public static function course_form_extend_definition(after_form_definition $hook): void {
         global $OUTPUT;
 
         $mform = $hook->get_mform();
@@ -61,15 +61,15 @@ class hook_callbacks {
     /**
      * Extending a course form after data is set.
      *
-     * @param \core_course\hook\extend_form_definition_after_data $hook Hook.
+     * @param \core_course\hook\after_form_definition_after_data $hook Hook.
      */
-    public static function course_form_extend_definition_after_data(extend_form_definition_after_data $hook): void {
+    public static function course_form_extend_definition_after_data(after_form_definition_after_data $hook): void {
         global $OUTPUT;
 
         $mform = $hook->get_mform();
 
         $name = $mform->getElementValue('fullname');
-        $html = $OUTPUT->notification('The hook extend_form_definition_after_data works!', 'info', false);
+        $html = $OUTPUT->notification('The hook after_form_definition_after_data works!', 'info', false);
 
         if ($name == 'Course 1') {
             $element = $mform->createElement('static', 'works', '', $html);
@@ -80,9 +80,9 @@ class hook_callbacks {
     /**
      * Extending a course form validation.
      *
-     * @param \core_course\hook\extend_form_validation $hook Hook.
+     * @param \core_course\hook\after_form_validation $hook Hook.
      */
-    public static function course_form_extend_validation(extend_form_validation $hook): void {
+    public static function course_form_extend_validation(after_form_validation $hook): void {
         $data = $hook->get_data();
 
         if (empty($data['local_helper_text'])) {
@@ -93,9 +93,9 @@ class hook_callbacks {
     /**
      * Extending a course form submission.
      *
-     * @param \core_course\hook\extend_form_submission $hook Hook.
+     * @param \core_course\hook\after_form_submission $hook Hook.
      */
-    public static function course_form_extend_submission(extend_form_submission $hook): void {
+    public static function course_form_extend_submission(after_form_submission $hook): void {
         global $DB;
 
         $data = $hook->get_data();
